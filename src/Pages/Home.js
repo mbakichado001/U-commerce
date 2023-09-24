@@ -1,67 +1,23 @@
-import Element from "../Composants/Produits"
+import { useState } from "react"
+import Panier  from "../Composants/Panier"
+import Products from "../Data/Products.js"
+import ShoppingList from "../Composants/ShoppingList"
+
 
 export default function Navbar(){
-    const Products =[
-        {
-            id :1,
-            Titre : "iphone 7 plus",
-            Prix : 230,
-            Disponible : true 
-
-        },
-        {
-            id : 2,
-            Titre : "iphone 8 plus",
-            Prix : 300,
-            Disponible : true 
-
-        },
-        {
-            id : 3,
-            Titre : "iphone 11 pro",
-            Prix : 0,
-            Disponible : false 
-
-        },
-        {
-            id : 4,
-            Titre : "iphone 11 pro-max",
-            Prix : 650,
-            Disponible : true 
-
-        },
-        {
-            id : 5,
-            Titre : "iphone 12",
-            Prix : 300,
-            Disponible : true 
-
-        },
-        {
-            id : 5,
-            Titre : "iphone 13",
-            Prix : 0,
-            Disponible : false 
-
-        },
-      
-        
-    ]
+    const [panier, setPanier] = useState ([])
     return(
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {
-                Products.map(Product =>
-                    <Element
-                       Titre={Product.Titre}
-                       Prix={Product.Prix}
-                       Disponible={Product.Disponible}
-                       Key={Product.id}/>
-                       
+        <>
+            <div className="grid grid-cols-4 "> 
+               <Panier panier ={panier} setPanier={setPanier}/>
+                
+                <div className="col-span-3 p-4">
+                    <ShoppingList panier ={panier} setPanier={setPanier}/>
+                </div>
+            </div>
+        </>
 
-                )
-            }
-
-        </div>
+        
 
     )
 }
